@@ -55,12 +55,19 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        List<User> users = (List<User>)  Util.getSessionFactory().openSession().createQuery("From User").list();
-        return users;
+        return (List<User>) Util.getSessionFactory().openSession().createQuery("From User").list();
     }
 
     @Override
     public void cleanUsersTable() {
+        Session session = Util.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
 
+        String sql = "TRUNCATE TABLE users";
+
+        Query query = session.createSQLQuery(sql).addEntity(User.class);
+        query.executeUpdate();
+        transaction.commit();
+        session.close();
     }
 }

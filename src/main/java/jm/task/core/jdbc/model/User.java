@@ -5,26 +5,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
-    }
-
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column
     private String name;
-
     @Column
     private String lastName;
-
     @Column
     private Byte age;
 
@@ -38,10 +25,22 @@ public class User {
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    @Deprecated
     public Long getId() {
         return id;
     }
 
+    @Deprecated
     public void setId(Long id) {
         this.id = id;
     }
@@ -50,6 +49,7 @@ public class User {
         return name;
     }
 
+    @Deprecated
     public void setName(String name) {
         this.name = name;
     }
@@ -58,6 +58,7 @@ public class User {
         return lastName;
     }
 
+    @Deprecated
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -66,6 +67,7 @@ public class User {
         return age;
     }
 
+    @Deprecated
     public void setAge(Byte age) {
         this.age = age;
     }
